@@ -20,19 +20,19 @@ void setup() {
 
 void loop() {
   if (digitalRead(btnUp) == LOW) {
-    Serial.println("w");
+    Serial.println("w\n");
     delay(150); 
   }
   if (digitalRead(btnLeft) == LOW) {
-    Serial.println("a");
+    Serial.println("a\n");
     delay(150);
   }
   if (digitalRead(btnDown) == LOW) {
-    Serial.println("s");
+    Serial.println("s\n");
     delay(150);
   }
   if (digitalRead(btnRight) == LOW) {
-    Serial.println("d");
+    Serial.println("d\n");
     delay(150);
   }
 
