@@ -14,7 +14,7 @@ import serial
 # Note the serial port dev file name
 # need to change based on the particular host machine
 # TODO uncomment the following two lines to initialize serial port
-serialDevFile = '/dev/cu.usbmodem14201' 
+serialDevFile = 'OurDevicePathWouldGoHere' 
 # file path above needs to be changed to our device
 ser=serial.Serial(serialDevFile, 9600, timeout=0)
 
@@ -117,6 +117,38 @@ while True:
     # elif ......
     #
 
+        line = ser.readline()  # bytes until \n or timeout
+            if not line:
+                # no data present in this iteration
+                continue
+            try:
+                text = line.decode('utf-8', errors='ignore').strip()
+            except Exception:
+                continue
+            if not text:
+                continue
+
+            # if Arduino sent multiple characters or words, use the first char
+            control = text[0].lower()
+
+#in case arduino sends bytes:
+#b = ser.read(1)
+#if b:
+#    control = b.decode('utf-8', errors='ignore')
+
+            # Map control to head.direction
+            if control == 'w':
+                head.direction = "up"
+            elif control == 's':
+                head.direction = "down"
+            elif control == 'a':
+                head.direction = "left"
+            elif control == 'd':
+                head.direction = "right"
+
+    # End of TODO section
+
+
     # Check for a collision with the border
     if head.xcor()>290 or head.xcor()<-290 or head.ycor()>290 or head.ycor()<-290:
         time.sleep(1)
@@ -147,6 +179,12 @@ while True:
         # you need to send a flag to Arduino indicating an apple is eaten
         # so that the Arduino will beep the buzzer
         # Hint: refer to the example at Serial-RW/pyserial-test.py
+
+        line = ser.readline()
+        print(line)
+        ser.write(b'A')
+
+        #end of TODO section
 
         # Move the food to a random spot
         x = random.randint(-290, 290)
