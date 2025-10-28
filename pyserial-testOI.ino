@@ -1,4 +1,8 @@
-# pyserial-test.py
+# THIS FILE IS FOR REFERENCE ONLY 
+#
+#
+#
+#pyserial-test.py
 # test serial communication with Arduino
 #
 # require pip install pyserial
