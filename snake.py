@@ -11,13 +11,14 @@ import random
 #pyserial package
 import serial
 
-# Note the serial port dev file name
+# Note the serial port dev file name ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # need to change based on the particular host machine
 # TODO uncomment the following two lines to initialize serial port
 serialDevFile = 'OurDevicePathWouldGoHere' 
 # file path above needs to be changed to our device
 ser=serial.Serial(serialDevFile, 9600, timeout=0)
 
+#end TODO section -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 delay = 0.1
 
 # Score
@@ -106,7 +107,7 @@ wn.onkey(go_right, "d")
 while True:
     wn.update()
 
-    # TODO: notes by Prof. Luo
+    # TODO: notes by Prof. Luo ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     # you need to add your code to read control information from serial port
     # then use that information to set head.direction
     # For example, 
@@ -146,7 +147,7 @@ while True:
             elif control == 'd':
                 head.direction = "right"
 
-    # End of TODO section
+    # End of TODO section -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
     # Check for a collision with the border
@@ -175,7 +176,7 @@ while True:
     # Check for a collision with the food
     if head.distance(food) < 20:
 
-        # TODO: notes by Prof. Luo
+        # TODO: notes by Prof. Luo ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         # you need to send a flag to Arduino indicating an apple is eaten
         # so that the Arduino will beep the buzzer
         # Hint: refer to the example at Serial-RW/pyserial-test.py
@@ -184,7 +185,7 @@ while True:
         print(line)
         ser.write(b'A')
 
-        #end of TODO section
+        #end of TODO section ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
         # Move the food to a random spot
         x = random.randint(-290, 290)
