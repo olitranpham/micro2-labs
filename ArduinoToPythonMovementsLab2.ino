@@ -1,5 +1,6 @@
 // Serial-buttons.ino
 //change the PINS below in accordance to design
+//add library for Gyroscope knob controller, can be done through arduino
 const int btnUp = 2;
 const int btnLeft = 3;
 const int btnDown = 4;
