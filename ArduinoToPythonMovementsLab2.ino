@@ -2,44 +2,62 @@
 //change the PINS below in accordance to design
 //add library for Gyroscope knob controller, can be done through arduino
 
-//make sure to download this library before use, or else it will not work
 #include <MPU9250_asukiaa.h>
 
 MPU9250_asukiaa mpu;
 
-
-const int btnUp = 2;
-const int btnLeft = 3;
-const int btnDown = 4;
-const int btnRight = 5;
+//const int btnUp = 2;
+//const int btnLeft = 3;
+//const int btnDown = 4;
+//const int btnRight = 5;
 const int bzrAlert - 6;
+
+const int JoyPinSW = 1; //joystick main pin
+const int YcoordPIN = 0; //Y coord pin in
+const int XcoordPIN = 2; //X coord pin in
+
+
 int buzzer_status = LOW;
 int incomingByte = 0;
 
 void setup() {
+  pinMode(JoyPinSW, INPUT);
+  digitalWrite(JoyPinSW, HIGH);
   Serial.begin(9600);
-  pinMode(btnUp, INPUT_PULLUP);
-  pinMode(btnLeft, INPUT_PULLUP);
-  pinMode(btnDown, INPUT_PULLUP);
-  pinMode(btnRight, INPUT_PULLUP);
+
   pinMode(bzrAlert, OUTPUT);
   digitalWrite(bzrAlert, LOW); 
 }
 
 void loop() {
-  if (digitalRead(btnUp) == LOW) {
+
+  //code here is for the joystick to show current location in serial monitor 
+  Serial.print("Switch: ");
+  Serial.print(digitalRead(JoyPinSW));
+  Serial.print("\n");
+  Serial.print("X-axis: ");
+  Serial.print(analogRead(XcoordPIN));
+  Serial.print("\n");
+  Serial.print("Y-axis: ");
+  Serial.print(analogRead(YcoordPIN));
+  Serial.print("\n\n");
+  delay(500)
+
+
+//figure out what the quadrants are using the joystick in order to figure out what if ( && ) statements should be
+  if (Upperquadrant) {
     Serial.println("w\n");
     delay(150); 
   }
-  if (digitalRead(btnLeft) == LOW) {
+  if (LeftQuadrant) {
     Serial.println("a\n");
     delay(150);
   }
-  if (digitalRead(btnDown) == LOW) {
+  if (LowerQuadrant) {
     Serial.println("s\n");
     delay(150);
   }
-  if (digitalRead(btnRight) == LOW) {
+  if (RightQuadrant) {
     Serial.println("d\n");
     delay(150);
   }
