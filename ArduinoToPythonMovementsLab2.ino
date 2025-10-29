@@ -1,6 +1,13 @@
 // Serial-buttons.ino
 //change the PINS below in accordance to design
 //add library for Gyroscope knob controller, can be done through arduino
+
+//make sure to download this library before use, or else it will not work
+#include <MPU9250_asukiaa.h>
+
+MPU9250_asukiaa mpu;
+
+
 const int btnUp = 2;
 const int btnLeft = 3;
 const int btnDown = 4;
