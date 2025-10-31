@@ -14,7 +14,7 @@ import serial
 # Note the serial port dev file name ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # need to change based on the particular host machine
 # TODO uncomment the following two lines to initialize serial port
-serialDevFile = 'OurDevicePathWouldGoHere' 
+serialDevFile = 'COM3' 
 # file path above needs to be changed to our device
 ser=serial.Serial(serialDevFile, 9600, timeout=0)
 
