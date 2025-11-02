@@ -4,6 +4,7 @@
 #
 # you need to install a few python3 packages
 #   pip3 install pyserial
+# https://projecthub.arduino.cc/ansh2919/serial-communication-between-python-and-arduino-663756 
 
 import turtle
 import time
