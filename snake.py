@@ -17,7 +17,7 @@ import serial
 # TODO uncomment the following two lines to initialize serial port
 serialDevFile = 'COM3' 
 # file path above needs to be changed to our device
-ser=serial.Serial(serialDevFile, 9600, timeout=0)
+ser = serial.Serial(serialDevFile, 9600, timeout=0)
 
 #end TODO section -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 delay = 0.1
@@ -119,37 +119,36 @@ while True:
     # elif ......
     #
 
-        line = ser.readline()  # bytes until \n or timeout
-            if not line:
-                # no data present in this iteration
-                continue
-            try:
-                text = line.decode('utf-8', errors='ignore').strip()
-            except Exception:
-                continue
-            if not text:
-                continue
+    line = ser.readline()  # bytes until \n or timeout
+    if not line:
+        # no data present in this iteration
+        continue
+    try:
+        text = line.decode('utf-8', errors='ignore').strip()
+    except Exception:
+        continue
+    if not text:
+        continue
 
-            # if Arduino sent multiple characters or words, use the first char
-            control = text[0].lower()
+    # if Arduino sent multiple characters or words, use the first char
+    control = text[0].lower()
 
-#in case arduino sends bytes:
-#b = ser.read(1)
-#if b:
-#    control = b.decode('utf-8', errors='ignore')
+    #in case arduino sends bytes:
+    #b = ser.read(1)
+    #if b:
+    #    control = b.decode('utf-8', errors='ignore')
 
-            # Map control to head.direction
-            if control == 'w':
-                head.direction = "up"
-            elif control == 's':
-                head.direction = "down"
-            elif control == 'a':
-                head.direction = "left"
-            elif control == 'd':
-                head.direction = "right"
+    # Map control to head.direction
+    if control == 'w':
+        head.direction = "up"
+    elif control == 's':
+        head.direction = "down"
+    elif control == 'a':
+        head.direction = "left"
+    elif control == 'd':
+        head.direction = "right"
 
     # End of TODO section -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 
     # Check for a collision with the border
     if head.xcor()>290 or head.xcor()<-290 or head.ycor()>290 or head.ycor()<-290:
@@ -172,7 +171,6 @@ while True:
 
         pen.clear()
         pen.write("Score: {}  High Score: {}  P/A: {}".format(score, high_score, ppa), align="center", font=("Courier", 24, "normal")) 
-
 
     # Check for a collision with the food
     if head.distance(food) < 20:
