@@ -24,11 +24,11 @@ MPU6500 IMU;
 calData calib = {0};
 AccelData accelData;
 
-const int bzrAlert = 6;
+const int bzrAlert = 8;
 
-const int JoyPinSW = 1; //joystick main pin
+const int JoyPinSW = 0; //joystick main pin
 const int YcoordPIN = 1; //Y coord pin in
-const int XcoordPIN = 0; //X coord pin in
+const int XcoordPIN = 2; //X coord pin in
 
 int buzzer_status = LOW;
 int incomingByte = 0;
@@ -37,7 +37,7 @@ int TrueX;
 int TrueY;
 //----------------------------------------------------------------
 //1 for joystick, 2 for gyro
-int JoyORGyro = 0;
+int JoyORGyro = 1;
 //----------------------------------------------------------------
 void setup() {
   //joystick
@@ -50,7 +50,7 @@ void setup() {
 
   //gyroscope
   Wire.begin(); // Arduino Mega: SDA = 20, SCL = 21
-  Serial.begin(9600);
+//  Serial.begin(9600);
 
   IMU.init(calib, IMU_ADDR);
   IMU.setAccelRange(4);  // Adjust sensitivity as needed
@@ -58,9 +58,9 @@ void setup() {
 
 void loop() {
   //select the mode
-  Serial.println("input what mode to use: \n");
-  Serial.println("1 = use the joystick \n");
-  Serial.println("2 = use the gyro \n");
+  //Serial.println("input what mode to use: \n");
+  //Serial.println("1 = use the joystick \n");
+  //Serial.println("2 = use the gyro \n");
 
 
   //read inputs including the "apple eaten"
@@ -87,7 +87,7 @@ void loop() {
   }
   
   //Joystick controls
-  while(JoyORGyro = 1) {
+  while(JoyORGyro == 1) {
   TrueX = analogRead(XcoordPIN);
   TrueY = analogRead(YcoordPIN);
   //TrueX = analogRead(XcoordPIN) - 128;
@@ -137,7 +137,7 @@ void loop() {
 
 //Gyro Controls
 //wires are to the right of the gyro in this config (all wires are "bottom-right", in relation to "up")
-  while(JoyORGyro = 2) {
+  while(JoyORGyro == 2) {
   IMU.update();
   IMU.getAccel(&accelData);
 
