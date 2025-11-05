@@ -115,23 +115,31 @@ void loop() {
 //wires are on the left of the joystick for this config
   //lowerquadrant
   if (((300 < TrueX) && (TrueX < 700)) && ((701 < TrueY) && (TrueY < 1030))) {
-    Serial.println("s\n");
-    delay(150); 
+    while(true) {
+      Serial.println("s\n");
+      delay(150); 
+    }
   }
   //leftquadrant
   if (((0 < TrueX) && (TrueX < 299)) && ((300 < TrueY) && (TrueY < 700))) {
-    Serial.println("a\n");
-    delay(150);
+    while(true) {
+      Serial.println("a\n");
+      delay(150);
+    }
   }
   //upperquadrant
   if (((300 < TrueX) && (TrueX < 700)) && ((0 < TrueY) && (TrueY < 299))) {
-    Serial.println("w\n");
-    delay(150);
+    while(true) {
+      Serial.println("w\n");
+      delay(150);
+    }
   }
   //Rightquadrant
   if (((701 < TrueX) && (TrueX < 1030)) && ((300 < TrueY) && (TrueY < 700))) {
-    Serial.println("d\n");
-    delay(150);
+    while(true) {
+      Serial.println("d\n");
+      delay(150);
+    }
   }
   }
 
@@ -146,23 +154,31 @@ void loop() {
   float ay = accelData.accelY;
 
   if (((-0.4 < ax) && (ax < 0)) && ((1.75 < ay) && (ay < 2.05))) {
-    Serial.println("w\n");
-    delay(150); 
+    while(true) {
+      Serial.println("w\n");
+      delay(150);
+    }
   }
   //leftquadrant
   if (((0 < ax) && (ax < 0.4)) && ((2.06 < ay) && (ay < 2.34))) {
-    Serial.println("a\n");
-    delay(150);
+    while(true) {
+      Serial.println("a\n");
+      delay(150);
+    }
   }
   //Lowerquadrant
   if (((-0.4 < ax) && (ax < 0)) && ((2.4 < ay) && (ay < 2.7))) {
-    Serial.println("s\n");
-    delay(150);
+    while(true) {
+      Serial.println("s\n");
+      delay(150); 
+    }
   }
   //Rightquadrant
   if (((-1.1 < ax) && (ax < -0.4)) && ((2.06 < ay) && (ay < 2.39))) {
-    Serial.println("d\n");
-    delay(150);
+    while(true) {
+      Serial.println("d\n");
+      delay(150);
+    }
   }  
   }
 
