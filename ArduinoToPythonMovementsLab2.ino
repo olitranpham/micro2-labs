@@ -33,6 +33,8 @@ const int XcoordPIN = 2; //X coord pin in
 int buzzer_status = LOW;
 int incomingByte = 0;
 
+char currentDirection = ' ';
+
 int TrueX;
 int TrueY;
 //----------------------------------------------------------------
@@ -115,32 +117,28 @@ void loop() {
 //wires are on the left of the joystick for this config
   //lowerquadrant
   if (((300 < TrueX) && (TrueX < 700)) && ((701 < TrueY) && (TrueY < 1030))) {
-    while(true) {
-      Serial.println("s\n");
+      char currentDiraction = 's';
       delay(150); 
-    }
   }
   //leftquadrant
   if (((0 < TrueX) && (TrueX < 299)) && ((300 < TrueY) && (TrueY < 700))) {
-    while(true) {
-      Serial.println("a\n");
+      char currentDiraction = 'a';
       delay(150);
-    }
   }
   //upperquadrant
   if (((300 < TrueX) && (TrueX < 700)) && ((0 < TrueY) && (TrueY < 299))) {
-    while(true) {
-      Serial.println("w\n");
+      char currentDiraction = 'w';
       delay(150);
-    }
   }
   //Rightquadrant
   if (((701 < TrueX) && (TrueX < 1030)) && ((300 < TrueY) && (TrueY < 700))) {
-    while(true) {
-      Serial.println("d\n");
+      char currentDiraction = 'd';
       delay(150);
-    }
   }
+
+  Serial.println(currentDirection);
+  Serial.println("\n");
+  delay(150); 
   }
 
 //Gyro Controls
@@ -154,32 +152,29 @@ void loop() {
   float ay = accelData.accelY;
 
   if (((-0.4 < ax) && (ax < 0)) && ((1.75 < ay) && (ay < 2.05))) {
-    while(true) {
-      Serial.println("w\n");
+      char currentDiraction = 'w';
       delay(150);
-    }
   }
   //leftquadrant
   if (((0 < ax) && (ax < 0.4)) && ((2.06 < ay) && (ay < 2.34))) {
-    while(true) {
-      Serial.println("a\n");
+      char currentDiraction = 'a';
       delay(150);
-    }
   }
   //Lowerquadrant
   if (((-0.4 < ax) && (ax < 0)) && ((2.4 < ay) && (ay < 2.7))) {
-    while(true) {
-      Serial.println("s\n");
+      char currentDiraction = 's';
       delay(150); 
-    }
   }
   //Rightquadrant
   if (((-1.1 < ax) && (ax < -0.4)) && ((2.06 < ay) && (ay < 2.39))) {
-    while(true) {
-      Serial.println("d\n");
+      char currentDiraction = 'd';
       delay(150);
-    }
+
   }  
+
+  Serial.println(currentDirection);
+  Serial.println("\n");
+  delay(150); 
   }
 
 
