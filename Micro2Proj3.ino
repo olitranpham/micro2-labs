@@ -139,10 +139,6 @@ void setup() {
     }
   }
 
-  // Optional: set RTC time once, then comment this out
-  // Uncomment the line below ONCE to set the time, then re-upload with it commented
-  // rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
-
   DateTime now = rtc.now();
   noInterrupts();
   curHour   = now.hour();
@@ -199,7 +195,6 @@ void setupTimer1() {
   OCR1A = 15624;
   TCCR1B |= (1 << WGM12);              // CTC mode
   TCCR1B |= (1 << CS12) | (1 << CS10); // prescaler 1024
-
   TIMSK1 |= (1 << OCIE1A);             // enable Timer1 compare interrupt
 
   interrupts();
@@ -264,7 +259,6 @@ int readSoundLevel() {
 // Map breath level to speed steps with persistence
 void updateSpeedFromSound(int level) {
   // Thresholds for breath activation
-  // Adjust these based on your sensor's behavior
   int newStep = 0;
 
   if (level < 200) {
@@ -287,7 +281,6 @@ void updateSpeedFromSound(int level) {
   else if (millis() - lastSoundTime < SOUND_TIMEOUT) {
     speedStep = lastSpeedStep; // Maintain last speed
   }
-  // Complete silence for too long, stop motor
   else {
     speedStep = 0;
   }
@@ -362,6 +355,5 @@ void updateLCD(uint8_t h, uint8_t m, uint8_t s) {
 
   lcd.print(speedText);
 
-  // Clear any trailing characters on the second line
   lcd.print("    ");
 }
